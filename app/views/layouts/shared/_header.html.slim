@@ -1,0 +1,10 @@
+header.navbar.navbar-default role="navigation"
+  .container
+    .navbar-header
+      button.navbar-toggle.collapsed data-target="#bs-navbar-collapse-1" data-toggle="collapse" type="button"
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to 'Tokebi', root_path, class: 'navbar-brand'
+    = render 'layouts/shared/navigation'

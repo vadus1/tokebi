@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title Tokebi
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    = render "layouts/shared/header"
+    #wrap.container
+      .row
+        .col-sm-12
+          .flash-messages
+            = render 'layouts/shared/messages'
+          = yield
+    = render "layouts/shared/footer"
