@@ -1,2 +1,10 @@
-h1 Categories#index
-p Find me in app/views/categories/index.html.slim
+.container
+  .row
+    ul.thumbnails
+      - @categories.each do |category|
+        li.col-sm-4
+          .thumbnail
+            img src="http://placehold.it/300x200"
+            .caption
+              h3 = category.name
+              p = category.description
