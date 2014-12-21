@@ -1,2 +1,13 @@
-h1 Products#index
-p Find me in app/views/products/index.html.slim
+.container
+  .row
+    ul.thumbnails
+      - @products.each do |product|
+        li.col-sm-4
+          .thumbnail
+            img src="http://placehold.it/300x200"
+            div
+              /h3 = link_to product.name, product
+              p = truncate(product.description, length: 100)
+              p
+                | Price:&nbsp;
+                = number_to_currency(product.price, precision: 0)

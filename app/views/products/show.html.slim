@@ -1,0 +1,16 @@
+.container
+  .row-fluid
+    .col-sm-7
+      div
+        img src="http://placehold.it/300x200"
+    .col-sm-5
+      h3 = @product.name
+      span.price
+        | Цена:&nbsp;
+        = number_to_currency(@product.price, precision: 0)
+      = link_to @product, class: 'btn btn-success' do
+        = fa_icon "shopping-cart", text: "Добавить в корзину"
+      .product-description = @product.description
+  .review
+    h3 Обзор
+    | обзор
