@@ -18,7 +18,7 @@ class Category < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
-  has_many :produts, inverse_of: :category, dependent: :destroy
+  has_many :products, inverse_of: :category, dependent: :destroy
 
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true

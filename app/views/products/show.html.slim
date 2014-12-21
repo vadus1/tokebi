@@ -1,21 +1,31 @@
 .container
-  .row-fluid
-    .col-sm-7
-      div
-        = image_tag @product.image, { size: '450x400', crop: 'fill' }
-    .col-sm-5
-      p
-        | Name:&nbsp;
-        = @product.name
-      p
-        | Quantity:&nbsp;
-        = @product.quantity
-      span.price
-        | Цена:&nbsp;
-        = number_to_currency(@product.price, precision: 0)
-      = link_to @product, class: 'btn btn-success' do
-        = fa_icon "shopping-cart", text: "Добавить в корзину"
-      .product-description = @product.description
-  .review
-    h3 Обзор
-    | обзор
+  .product
+    .product-header = render_breadcrumbs separator: '&nbsp; /  &nbsp;'
+    .row-fluid
+      .col-sm-7
+        .cover
+          = image_tag @product.image
+      .col-sm-5
+        .product-details
+          .title
+            h2
+              = truncate(@product.name, length: 40)
+              small
+                = @product.category.name
+          .description
+            = truncate(@product.description, length: 240)
+          .actions
+            - if @product.quantity > 0
+              | In Stock
+              span.badge.badge-success = @product.quantity
+            hr
+            .form-inline
+              h3
+              .row-fluid
+                .col-sm-5 = number_to_price @product.price
+                .col-sm-7 = render 'products/add_to_cart', product: @product
+    br
+    .row-fluid
+      .col-sm-12
+        h4 Description
+        = simple_format @product.description

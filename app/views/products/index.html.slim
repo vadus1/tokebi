@@ -1,13 +1,12 @@
 .container
+  = render 'search_bar'
   .row
-    ul.thumbnails
-      - @products.each do |product|
-        li.col-sm-4
-          .thumbnail
-            = image_tag product.image, { size: '300x200', crop: 'fill' }
-            div
-              /h3 = link_to product.name, product
-              p = truncate(product.description, length: 100)
-              p
-                | Price:&nbsp;
-                = number_to_currency(product.price, precision: 0)
+    .col-sm-3
+      = render 'navigation'
+    .col-sm-9
+      - if @products.length == 0
+        .alert.alert-block No Products
+      - else
+      ul.thumbnails
+        - @products.each do |product|
+          = render product

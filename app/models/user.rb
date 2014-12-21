@@ -16,6 +16,9 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  name                   :string
+#  biography              :text
+#  avatar                 :string
+#  type                   :string
 #
 
 class User < ActiveRecord::Base
@@ -26,7 +29,26 @@ class User < ActiveRecord::Base
 
   #mount_uploader :avatar, ImageUploader
 
+  has_many :addresses
+  has_many :orders,  through: :addresses
+
+  def guest?
+    type.eql?("Guest")
+  end
+
+  def member?
+    type.eql?("Member")
+  end
+
   def to_s
     name || email
+  end
+
+  def name_from_email
+    email.split('@')[0].gsub(/[._-]/, " ").humanize
+  end
+
+  def default_address
+    address ||= addresses.default.first
   end
 end

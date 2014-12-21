@@ -1,0 +1,9 @@
+= content_tag_for(:li, product, class: 'col-sm-3') do |product|
+  .thumbnail.no-bottom
+    .cover
+      = link_to image_tag(product.image.thumb, title: product.name), product
+    .caption
+      h4 = link_to product.name, product, title: product.name
+      p = truncate(product.description, length: 110)
+      h4.price = number_to_price(product.price)
+      = render 'products/add_to_cart', product: product

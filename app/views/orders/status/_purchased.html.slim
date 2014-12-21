@@ -1,0 +1,23 @@
+.container
+  .row
+    .col-sm-8.col-sm-offset-2
+      .well.well-elderflower.no-actions
+        = content_tag :fieldset, class: 'order-invoice' do
+          span.order "Invoice No. #{@order.id}"
+          span.pull-right
+            = link_to order_path(@order, format: "pdf"), class: 'btn' do
+              i.icon-print
+              | Print Invoice
+      .well.well-elderflower.no-actions
+        = content_tag :fieldset do
+          p.lead Thank you for your purchase, keep enjoy shopping! :)
+          p I hope you enjoy your Shopper products.
+          p Your transaction has been completed, and a receipt for your purchase has been emailed to you.
+          p If you have any questions about your order, or comments about your shopping experience, please contact our and let our know.
+          br
+          .pull-right
+            = link_to 'Continue Shopping', root_path, class: 'btn'
+            - if current_user && current_user.member?
+              = link_to 'Go to Orders History', user_orders_path(current_user), class: 'btn btn-success'
+      - if @guest.present? && @guest.guest?
+        = render 'orders/status/purchased_sign_up'

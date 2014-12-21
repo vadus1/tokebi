@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.0'
 gem 'pg'
+gem 'pg_search'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
@@ -16,13 +17,12 @@ gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
 gem 'font-awesome-rails'
+gem 'noty-rails'
+gem 'jquery-ui-rails'
 gem 'active_link_to'
 
 # Authentication
 gem 'devise'
-
-# Administration
-#gem 'activeadmin', github: 'activeadmin'
 
 # Templates
 gem 'slim-rails'
@@ -44,8 +44,21 @@ gem 'simple_form'
 gem 'babosa'
 gem 'friendly_id', '5.1.0.beta.1'
 
+# Breadcrumb
+gem 'breadcrumbs_on_rails'
+
+# Relationship Diagrams
+gem 'rails-erd'
+
+# Generate PDF
+gem 'prawn', git: 'git://github.com/prawnpdf/prawn.git'
+
 # Administration
-#gem 'activeadmin', github: 'activeadmin'
+gem 'inherited_resources', github: 'josevalim/inherited_resources', branch: 'rails-4-2'
+gem 'activeadmin', github: 'lazaronixon/activeadmin', branch: 'master'
+
+# State
+gem 'state_machine', github: 'huoxito/state_machine', branch: 'activerecord-4.2-upgrade'
 
 gem 'rails_best_practices'
 
@@ -53,11 +66,13 @@ group :development do
   gem 'thin'
   gem 'annotate'
   gem 'quiet_assets'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'pry-rails'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   gem 'spring'

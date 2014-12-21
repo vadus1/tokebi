@@ -1,0 +1,10 @@
+#search-bar.well.well-small.clearfix
+  .row-fluid
+    .col-sm-3
+      = form_tag request.path, method: :get, class: 'sorting form-inline' do
+        | Sort by&nbsp;
+        = select_tag :sort_by, options_for_select({"Name: A-Z" => 1, "Name: Z-A" => 2, "Price: Low to High" => 3, "Price: High to Low" => 4 }, selected: "\#{session[:sort_by]}"), class: 'col-sm-9'
+      .col-sm-9
+        = form_tag request.path, method: :get, class: 'search form-inline pull-left col-sm-12' do
+          = text_field_tag :query, params[:query], placeholder: 'Typing searching words', class: 'col-sm-10'
+          = submit_tag "Search", name: nil, class: 'btn btn-success col-sm-2'

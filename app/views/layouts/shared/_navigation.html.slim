@@ -1,22 +1,20 @@
 #bs-navbar-collapse-1.collapse.navbar-collapse
   ul.nav.navbar-nav.navbar-right
     li
-      = link_to "Store", root_path
+      = link_to "Home", root_path
     li
-      = active_link_to '#', wrap_tag: :li do
-        = fa_icon "shopping-cart", text: "View Cart"
-    li
-      = active_link_to "Categories", categories_path, wrap_tag: :li
-    - if user_signed_in?
-      li.dropdown
+      = active_link_to "Store", products_path, wrap_tag: :li
+    = render_cart_menu
+    li.dropdown
+      - if user_signed_in?
         a.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="#" role="button"
           = current_user.name
           span.caret
         ul.dropdown-menu role="menu"
-          li = active_link_to "My Profile", edit_user_registration_path, wrap_tag: :li
+          li = active_link_to "My Profile", edit_user_registration_path, wrap_tag: :li unless current_user.guest?
+          li = active_link_to "Orders History", user_orders_path(current_user), wrap_tag: :li unless current_user.guest?
           li = link_to 'Log out', destroy_user_session_path, method: :delete
-    - else
-      li.dropdown
+      - else
         a.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="#" role="button"
           | Login / Register
           span.caret
