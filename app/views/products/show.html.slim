@@ -2,9 +2,14 @@
   .row-fluid
     .col-sm-7
       div
-        img src="http://placehold.it/300x200"
+        = image_tag @product.image, { size: '450x400', crop: 'fill' }
     .col-sm-5
-      h3 = @product.name
+      p
+        | Name:&nbsp;
+        = @product.name
+      p
+        | Quantity:&nbsp;
+        = @product.quantity
       span.price
         | Цена:&nbsp;
         = number_to_currency(@product.price, precision: 0)

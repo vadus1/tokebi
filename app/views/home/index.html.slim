@@ -1,2 +1,7 @@
-h1 Home#index
-p Find me in app/views/home/index.html.slim
+.container
+  - @products.each do |product|
+    = image_tag product.image, { size: '450x400', crop: 'fill' }
+    p = product.name
+    p
+      | Price:&nbsp;
+      = product.price

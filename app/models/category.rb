@@ -8,12 +8,15 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  slug        :string           not null
+#  image       :string
 #
 
 require "babosa"
 
 class Category < ActiveRecord::Base
   extend FriendlyId
+
+  mount_uploader :image, ImageUploader
 
   has_many :produts, inverse_of: :category, dependent: :destroy
 

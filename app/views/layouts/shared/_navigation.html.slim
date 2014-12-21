@@ -3,6 +3,9 @@
     li
       = link_to "Store", root_path
     li
+      = active_link_to '#', wrap_tag: :li do
+        = fa_icon "shopping-cart", text: "View Cart"
+    li
       = active_link_to "Categories", categories_path, wrap_tag: :li
     - if user_signed_in?
       li.dropdown

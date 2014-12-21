@@ -4,7 +4,7 @@
       - @products.each do |product|
         li.col-sm-4
           .thumbnail
-            img src="http://placehold.it/300x200"
+            = image_tag product.image, { size: '300x200', crop: 'fill' }
             div
               /h3 = link_to product.name, product
               p = truncate(product.description, length: 100)

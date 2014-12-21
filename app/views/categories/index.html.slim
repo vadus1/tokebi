@@ -4,7 +4,7 @@
       - @categories.each do |category|
         li.col-sm-4
           .thumbnail
-            img src="http://placehold.it/300x200"
+            = image_tag category.image, { size: '300x200', crop: 'fill' }
             .caption
-              h3 = category.name
+              h3 = link_to category.name, category_products_path(category)
               p = category.description

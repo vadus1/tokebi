@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  resources :products, only: [:index, :show]
   resources :categories, only: :index do
     resources :products, only: [:index, :show]
   end
