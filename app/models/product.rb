@@ -14,6 +14,8 @@
 #
 
 class Product < ActiveRecord::Base
+  include PgSearch
+
   mount_uploader :image, ImageUploader
 
   belongs_to :category, inverse_of: :products
@@ -28,20 +30,19 @@ class Product < ActiveRecord::Base
   validates :price,       presence: true, numericality: {greater_than: 0}
   validates :quantity, numericality: { only_integer: true, greater_than: 0 }
 
-  #include PgSearch
-  #pg_search_scope :search, against: [:name, :description],
-  #                using: {tsearch: {dictionary: "english"}}
+  pg_search_scope :search, against: [:name, :description],
+                  using: {tsearch: {dictionary: "english"}}
 
   def self.text_search query
-    query.present? ? search(query) : scoped
+    query.present? ? search(query) : all
   end
 
   def self.by_category category_id
-    category_id.present? ? joins(:category).where(categories: { slug: category_id }) : scoped
+    category_id.present? ? joins(:category).where(categories: { slug: category_id }) : all
   end
 
   def self.by_price_range min, max
-    (min.present? and max.present?) ? where("price >= ? and price <= ?", min, max) : scoped
+    (min.present? and max.present?) ? where("price >= ? and price <= ?", min, max) : all
   end
 
   def self.sort_by type
@@ -50,7 +51,7 @@ class Product < ActiveRecord::Base
       when 2 then order('products.name DESC')
       when 3 then order('products.price ASC')
       when 4 then order('products.price DESC')
-      else scoped
+      else all
     end
   end
 end

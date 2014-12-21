@@ -1,0 +1,22 @@
+legend
+  | Shipping Address
+  .pull-right
+    = link_to new_cart_address_path(cart), remote: true, class: 'btn btn-small' do
+      i.icon-plus
+      | New Address
+.radios
+  = form_for(cart, url: cart_path(cart), remote: true, html: { class: 'form-horizontal' }) do |f|
+    - current_user.addresses.includes(country: [:shipping_rate]).sort.each do |address|
+      = content_tag_for :label, address do
+        = f.radio_button :address_id, address.id, checked: ((address.id == cart.address_id) || (not cart.address_id && address.default))
+        .row-fluid.address
+          .col-sm-1.checked
+            i.hide
+            i.hide
+          .col-sm-9
+            = address.street_address
+          .col-sm-2
+            span.pull-right
+              = address.country.name
+    - if current_user.addresses.size.eql?(0)
+      .alert.alert-info Create new address

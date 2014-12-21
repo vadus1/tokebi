@@ -1,0 +1,16 @@
+legend Your Current Total
+.total
+  = number_to_price(cart.get_balance)
+table.table
+  thead
+    tr
+      th colspan="2"  Details
+  tbody
+    tr
+      td Sub Total
+      td.sub-total.price width="90"
+        = number_to_price(cart.total)
+    tr
+      td Shipping Rate
+      td.shipping-rate.price
+        = (cart.address.present? && cart.address.country.present? && cart.address.rate) ? number_to_price(cart.address.rate) : "not calculated"

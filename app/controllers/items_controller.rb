@@ -2,11 +2,9 @@ class ItemsController < ApplicationController
   respond_to :js, :json
 
   def create
-    #binding.pry
     if current_product
       @item = current_product.items.build(item_params)
       @item.order = current_order
-      binding.pry
       if @item.save
         respond_with(@item)
       else

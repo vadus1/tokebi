@@ -43,8 +43,8 @@ class Order < ActiveRecord::Base
   end
 
   def calculate_items
-    self.items_count = items.sum(&:quantity)
-    self.total = items.sum(&:sub_total)
+    self.items_count = items.sum("quantity")
+    self.total = items.sum("sub_total")
     self.save
   end
 

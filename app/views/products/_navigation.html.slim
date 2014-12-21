@@ -9,6 +9,10 @@ ul.nav.nav-tabs.nav-stacked
   .price
     = form_tag request.path, method: :get do
       .clearfix
-        span.pull-right from = text_field_tag 'min', session[:min], class: 'span2', placeholder: 'min'
-        span.pull-right to = text_field_tag 'max', session[:max], class: 'span2', placeholder: 'max'
+        span.pull-right
+          | from&nbsp;
+          = text_field_tag 'min', session[:min], class: 'col-sm-2', placeholder: 'min'
+        span.pull-right
+          | to&nbsp;
+          = text_field_tag 'max', session[:max], class: 'col-sm-2', placeholder: 'max'
       = button_tag 'View', name: nil, class: 'btn btn-success btn-block'

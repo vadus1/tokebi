@@ -1,7 +1,7 @@
 .container
   .product
     .product-header = render_breadcrumbs separator: '&nbsp; /  &nbsp;'
-    .row-fluid
+    .row
       .col-sm-7
         .cover
           = image_tag @product.image
@@ -21,11 +21,11 @@
             hr
             .form-inline
               h3
-              .row-fluid
+              .row
                 .col-sm-5 = number_to_price @product.price
                 .col-sm-7 = render 'products/add_to_cart', product: @product
     br
-    .row-fluid
+    .row
       .col-sm-12
         h4 Description
         = simple_format @product.description

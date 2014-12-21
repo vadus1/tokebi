@@ -1,0 +1,13 @@
+= form_for cart, url: cart_path(cart), html: {class: 'form-horizontal'} do |f|
+  table.table.table-striped.items
+    thead
+      tr
+        th width="40"
+        th Product Name
+        th width="90"  Unit Price
+        th width="40"  Quantity
+        th width="90"  Full Price
+        th width="20"
+    tbody
+      = f.fields_for :items do |i|
+        = render 'carts/items/item_fields', item: i.object,  i: i

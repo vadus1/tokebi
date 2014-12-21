@@ -1,0 +1,17 @@
+.container
+  .row
+    .span8
+      .well.well-elderflower
+        = content_tag :fieldset, id: 'view_cart' do
+          legend Cart Items
+          = render 'carts/items/items', cart: cart
+        = content_tag :fieldset, id: 'shipping' do
+          = render 'carts/addresses/shipping', cart: cart
+    .span4
+      #current-total.well.well-elderflower
+        = content_tag :fieldset, class: 'content' do
+          = render 'carts/current_total', cart: cart
+        = content_tag :fieldset, class: 'actions' do
+          = button_tag "Purchase", class: 'btn btn-block btn-success purchase'
+#purchase.modal.hide.fade.in
+  = render (current_user.member? ? 'carts/purchase/confirm' : 'carts/purchase/confirm_guest'), cart: cart

@@ -1,0 +1,8 @@
+.modal-header.hide
+  button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
+  h4 Shopping Cart
+.modal-body
+  = render 'carts/items/items', cart: cart
+.modal-footer
+  a.btn.btn-success aria-hidden="true" data-dismiss="modal"  Continue Shopping
+  = link_to 'Check Out', check_out, class: 'btn btn-primary pull-right'

@@ -1,0 +1,11 @@
+table.table.table-striped.items
+  thead
+    tr
+      th width="40"
+      th Product Name
+      th width="90"  Unit Price
+      th width="40"  Quantity
+      th width="90"  Full Price
+  tbody
+    - items.sort.each do |item|
+      = render "items/\#{partial_type}", item: item
