@@ -40,6 +40,8 @@ gem 'russian'
 # Forms
 gem 'simple_form'
 
+# Human-readable urls
+gem 'babosa'
 gem 'friendly_id', '5.1.0.beta.1'
 
 # Administration

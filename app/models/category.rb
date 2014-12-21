@@ -10,6 +10,8 @@
 #  slug        :string           not null
 #
 
+require "babosa"
+
 class Category < ActiveRecord::Base
   extend FriendlyId
 
@@ -19,4 +21,8 @@ class Category < ActiveRecord::Base
   validates :slug, presence: true, uniqueness: true
 
   friendly_id :name, use: :slugged
+
+  def normalize_friendly_id input
+    input.to_s.to_slug.normalize(transliterations: :russian).to_s
+  end
 end
