@@ -37,6 +37,14 @@ gem 'mini_magick'
 # Localization
 gem 'russian'
 
+# Forms
+gem 'simple_form'
+
+gem 'friendly_id', '5.1.0.beta.1'
+
+# Administration
+#gem 'activeadmin', github: 'activeadmin'
+
 gem 'rails_best_practices'
 
 group :development do
