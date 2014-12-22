@@ -1,0 +1,21 @@
+li.clearfix id="order_#{order.id}"
+  h5
+    = link_to "Invoice No. ##{order.id}"user_order_path(current_user, order), remote: true
+  .pull-right
+    = link_to order_path(order, format: "pdf"), class: 'btn btn-mini' do
+      i.icon-print
+      | Print Invoice
+  .content.clearfix
+    .row-fluid
+      .col-sm-10
+        dl.dl-horizontal
+          dt Date
+          dd = l order.updated_at, format: :long
+          dt Shipping address
+          dd = order.address.full_address
+          dt Order items
+          dd = pluralize(order.items_count, 'item')
+          dt Balance
+          dd = number_to_price(order.balance)
+      .col-sm-2
+        span.label.label-success.pull-right = order.state.humanize

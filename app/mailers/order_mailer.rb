@@ -3,8 +3,8 @@ class OrderMailer < ApplicationMailer
 
   def purchased_state(order)
     @order = order
-    attached = OrderPdf.new(order, view_context).render
-    attachments["order_#{order.id}.pdf"] = attached
+    #attached = OrderPdf.new(order, view_context).render
+    #attachments["order_#{order.id}.pdf"] = attached
 
     send_email(order)
   end

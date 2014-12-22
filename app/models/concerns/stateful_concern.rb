@@ -67,9 +67,9 @@ module StatefulConcern
 
   def send_mail
     case state
-      when 'purchased' then OrderMailer.delay.purchased_state(self)
-      when 'canceled'  then OrderMailer.delay.canceled_state(self)
-      when 'shipped'   then OrderMailer.delay.shipped_state(self)
+      when 'purchased' then OrderMailer.purchased_state(self).deliver_later
+      when 'canceled'  then OrderMailer.canceled_state(self).deliver_later
+      when 'shipped'   then OrderMailer.shipped_state(self).deliver_later
     end
   end
 

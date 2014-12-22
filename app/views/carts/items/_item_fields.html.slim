@@ -7,6 +7,6 @@
   td = i.number_field :quantity, in: 1..item.product.quantity, data: { quantity: item.quantity }, class: 'input-mini'
   td = full_price(item)
   td
-    = link_to item_path(item), method: :delete, remote: true, class: 'btn btn-link remove', confirm: "Are you sure remove \#{item.product.name} from cart?" do
-      i.icon-remove
+    = link_to item_path(item), method: :delete, remote: true, class: 'btn btn-link remove', data: { confirm: "Are you sure remove #{item.product.name} from cart?" } do
+      i.glyphicon.glyphicon-remove
   = i.hidden_field :id

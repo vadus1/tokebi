@@ -9,7 +9,7 @@ legend
     - current_user.addresses.includes(country: [:shipping_rate]).sort.each do |address|
       = content_tag_for :label, address do
         = f.radio_button :address_id, address.id, checked: ((address.id == cart.address_id) || (not cart.address_id && address.default))
-        .row-fluid.address
+        .row.address
           .col-sm-1.checked
             i.hide
             i.hide

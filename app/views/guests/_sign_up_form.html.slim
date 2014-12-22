@@ -1,0 +1,13 @@
+= simple_form_for(User.new, as: :user, url: registration_path(:user), html: { class: "form-horizontal well well-elderflower"}) do |f|
+  = content_tag :fieldset do
+    legend
+      | New Customers&nbsp;
+      small &mdash; Register free and always will be.
+    .col-sm-8.col-sm-offset-2
+      = f.input :email, placeholder: "Your Email"
+      = f.input :password, placeholder: "Password"
+      = f.input :password_confirmation, placeholder: "Password confirmation"
+      = f.hidden_field :type, value: "Member"
+      .row
+        = f.submit "Sign up", class: 'btn btn-success btn-block'
+      br

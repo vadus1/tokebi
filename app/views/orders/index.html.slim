@@ -1,0 +1,10 @@
+header
+  .container
+    h1 Orders History
+.container
+  .row
+    .col-sm-3
+      = render 'devise/shared/navigation_list'
+    .col-sm-9
+      ul.well.main-list.cream-list
+        = render @orders

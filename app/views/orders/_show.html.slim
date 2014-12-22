@@ -1,0 +1,38 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      button.close data-dismiss="modal" type="button"
+        span aria-hidden="true"  &times;
+        span.sr-only Close
+      h4#myModalLabel.modal-title
+        | Invoice No. #
+        = order.id
+    .modal-body
+      = content_tag :fieldset, class: 'clearfix' do
+        dl.dl-horizontal
+          dt Date
+          dd = l order.updated_at, format: :long
+          dt Shipping Address
+          dd = order.address.full_address
+        = render 'items/items', items: order.items, partial_type: 'item'
+        table.table.total
+          tfoot
+            tr
+              td
+              th.right width="165" Sub Total
+              td width="90" = number_to_price(order.total)
+            tr
+              td
+              th Shipping Rate
+              td = number_to_price(order.address.rate)
+            tr
+              td
+              th Balance
+              td = number_to_price(order.balance)
+    .modal-footer
+      .pull-left
+        span.label.label-success = order.state.humanize
+      a.btn.btn-success aria-hidden="true" data-dismiss="modal" Close
+      = link_to order_path(order, format: "pdf"), class: 'btn' do
+        i.icon-print
+        | Print Invoice

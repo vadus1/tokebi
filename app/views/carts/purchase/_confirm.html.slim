@@ -1,13 +1,17 @@
 = form_for cart, url: cart_path(cart), remote: true, html: {class: 'form-horizontal'} do |f|
-  .modal-header
-    button.close aria-hidden="true" data-dismiss="modal" &times;
-    h4 Place Order
-  .modal-body
-    p
-      | Shopper's shop will send purchase order's information in your email address&nbsp;
-      = current_user.email
-    = f.hidden_field :address_id, value: cart.address_id
-    = f.hidden_field :state_event, value: 'purchase'
-  .modal-footer
-    button.btn aria-hidden="true" data-dismiss="modal"  Cancel
-    = f.submit "Confirm", class: 'btn btn-success'
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+          span.sr-only Close
+        h4#myModalLabel.modal-title Place Order
+      .modal-body
+        p
+          | Shopper's shop will send purchase order's information in your email address&nbsp;
+          = current_user.email
+        = f.hidden_field :address_id, value: cart.address_id
+        = f.hidden_field :state_event, value: 'purchase'
+      .modal-footer
+        button.btn aria-hidden="true" data-dismiss="modal"  Close
+        = f.submit "Confirm", class: 'btn btn-success'
